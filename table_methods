@@ -1,0 +1,6 @@
+def query_table(table_name, key=None, value=None):
+    table = dynamodb.Table(table_name)
+    if key is not None and value is not None:
+        filtering_exp = Key(key).eq(value)
+        return table.query(KeyConditionExpression=filtering_exp)
+    raise ValueError('Parameters missing or invalid')
